@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AACFlow - Acoustic Augmented Conditioning Music Generation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">AACFLOW</h1>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                <li><a href="#abstract">Abstract</a></li>
+                <li><a href="#audio">Music Example</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="subtitle">Acoustic Augmented Conditioning Music Generation with Flow Matching Transformer</h1>
+            </div>
+        </section>
+
+        <!-- Abstract Section -->
+        <section id="abstract" class="abstract-section">
+            <div class="container">
+                <h2>Abstract</h2>
+                <div class="abstract-content">
+                    <div class="abstract-main">
+                        <p>Text to music (TTM) generation models typically generate music signals solely conditioned on textual input. While effective for semantic alignment, this traditional approach often struggles to capture detailed acoustic features inherent in music signal, e.g., prosody, timbre and expressiveness etc, leading to outputs that may sound unnatural or lack desired sonic qualities. To address this limitation, we propose a novel hybrid conditioning paradigm. Our method leverages MERT, a self-supervised large scale pretrained acoustic music foundation model, to extract high-level and generalizable acoustic features from a music signal. These extracted music features are then fused with the textual description to form an acoustic augmented condition (AAC) for the generative network, which is a flow-matching transformer architecture. Thus, the proposed approach, denoted as AACFlow, with piecewise linear dropout training strategy and classifier-free guidance (CFG)-Zero* inference strategy, significantly enriches the conditioning information by incorporating the acoustic prior. Experimental results show that AACFlow substantially improve the controllability and quality of the generated music signals compared to the conventional text-only conditioning methods on major benchmarks.</p>
+                    </div>
+                    <div class="architecture-diagram">
+                        <img src="AAC-architecture_page-0001.jpg" alt="AACFlow System Architecture" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" />
+                        <p>AACFLOW Architecture</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audio Section -->
+        <section id="audio" class="audio-section">
+            <div class="container">
+                <h2>Music Samples</h2>
+                
+                <!-- ChatGPT Generated Captions Section -->
+                <div class="music-section">
+                    <h3 class="section-title">Captions Random Generated from ChatGPT 4.1</h3>
+                    <!-- Audio Table Header -->
+                    <div class="audio-table-header">
+                        <div class="header-description">Caption</div>
+                        <div class="header-original">AACFLOW</div>
+                        <div class="header-processed">AudioLDM2</div>
+                        <div class="header-baseline">MusicGen</div>
+                    </div>
+                    
+                    <!-- MusicCaps Audio Rows -->
+                    <div class="audio-rows">
+                    <!-- Row 1 -->
+                    <div class="audio-row">
+                        <div class="row-description">Create a vibrant jazz composition featuring a smooth saxophone melody intertwined with dynamic drum patterns</div>
+                        <div class="row-original">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">AACFLOW 01</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-processed">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">AudioLDM2 01</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-baseline">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">MusicGen 01</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Row 2 -->
+                    <div class="audio-row">
+                        <div class="row-description">Generate a peaceful ambient soundscape that incorporates gentle nature sounds like flowing water and bird songs</div>
+                        <div class="row-original">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">AACFLOW 02</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-processed">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">AudioLDM2 02</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-baseline">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">MusicGen 02</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Row 3 -->
+                    <div class="audio-row">
+                        <div class="row-description">Compose an upbeat electronic dance track with pulsating synthesized bass and energetic rhythms</div>
+                        <div class="row-original">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">AACFLOW 03</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-processed">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">AudioLDM2 03</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-baseline">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">MusicGen 03</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Second section: MusicCaps Captions -->
+             <div class="music-section">
+                 <h3 class="section-title">Captions from MusicCaps</h3>
+                 <div class="audio-table">
+                     <div class="audio-table-header musiccaps">
+                         <div class="header-description">Caption</div>
+                         <div class="header-original">AACFLOW</div>
+                         <div class="header-processed">AudioLDM2</div>
+                         <div class="header-baseline">MusicGen</div>
+                         <div class="header-groundtruth">Ground Truth</div>
+                     </div>
+                    
+                    <!-- Row 4 -->
+                     <div class="audio-row musiccaps">
+                        <div class="row-description">This music is a mellow acoustic guitar piece with soft percussion accompaniment</div>
+                        <div class="row-original">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">AACFLOW 04</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-processed">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">AudioLDM2 04</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-baseline">
+                             <div class="audio-item-compact">
+                                 <span class="audio-title">MusicGen 04</span>
+                                 <div class="audio-player-mini">
+                                     <button class="play-btn-mini">▶</button>
+                                     <div class="progress-mini"></div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="row-groundtruth">
+                             <div class="audio-item-compact">
+                                 <span class="audio-title">Ground Truth 04</span>
+                                 <div class="audio-player-mini">
+                                     <button class="play-btn-mini">▶</button>
+                                     <div class="progress-mini"></div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                    
+                    <!-- Row 5 -->
+                     <div class="audio-row musiccaps">
+                        <div class="row-description">A classical piano solo composition performed in a minor key signature</div>
+                        <div class="row-original">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">AACFLOW 05</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-processed">
+                            <div class="audio-item-compact">
+                                <span class="audio-title">AudioLDM2 05</span>
+                                <div class="audio-player-mini">
+                                    <button class="play-btn-mini">▶</button>
+                                    <div class="progress-mini"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-baseline">
+                             <div class="audio-item-compact">
+                                 <span class="audio-title">MusicGen 05</span>
+                                 <div class="audio-player-mini">
+                                     <button class="play-btn-mini">▶</button>
+                                     <div class="progress-mini"></div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="row-groundtruth">
+                             <div class="audio-item-compact">
+                                 <span class="audio-title">Ground Truth 05</span>
+                                 <div class="audio-player-mini">
+                                     <button class="play-btn-mini">▶</button>
+                                     <div class="progress-mini"></div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content" style="text-align: center;">
+                <div class="footer-section">
+                    <p>This is an anonymous research demonstration For academic purposes only</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
