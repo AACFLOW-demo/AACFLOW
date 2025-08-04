@@ -49,20 +49,6 @@ function initAudioPlayers() {
         if (!audioSrc) return;
         
         playBtn.addEventListener('click', function() {
-            // 停止当前播放的音频
-            if (currentAudio && !currentAudio.paused) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
-                if (currentBtn) {
-                    currentBtn.textContent = '▶';
-                    currentBtn.style.background = '#667eea';
-                }
-                const currentProgress = currentBtn.parentElement.querySelector('.progress-mini');
-                if (currentProgress) currentProgress.style.setProperty('--progress', '0%');
-                currentAudio = null;
-                currentBtn = null;
-            }
-            
             // 如果点击的是当前播放的按钮，则暂停/恢复播放
             if (currentBtn === playBtn && currentAudio) {
                 if (currentAudio.paused) {
@@ -80,6 +66,18 @@ function initAudioPlayers() {
                     playBtn.style.background = '#667eea';
                 }
                 return;
+            }
+            
+            // 停止当前播放的音频（如果是不同的按钮）
+            if (currentAudio && !currentAudio.paused) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                if (currentBtn) {
+                    currentBtn.textContent = '▶';
+                    currentBtn.style.background = '#667eea';
+                }
+                const currentProgress = currentBtn.parentElement.querySelector('.progress-mini');
+                if (currentProgress) currentProgress.style.setProperty('--progress', '0%');
             }
             
             // 创建新的音频对象
