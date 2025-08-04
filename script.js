@@ -38,61 +38,90 @@ function initSmoothScrolling() {
 
 // 音频播放器功能
 function initAudioPlayers() {
-    const audioItems = document.querySelectorAll('.audio-item-compact');
+    const playBtns = document.querySelectorAll('.play-btn-mini');
+    let currentAudio = null;
+    let currentBtn = null;
     
-    audioItems.forEach((item, index) => {
-        const playBtn = item.querySelector('.play-btn-mini');
-        const progressBar = item.querySelector('.progress-mini');
+    playBtns.forEach(playBtn => {
+        const progressBar = playBtn.parentElement.querySelector('.progress-mini');
+        const audioSrc = playBtn.getAttribute('data-audio');
         
-        let isPlaying = false;
-        let currentTime = 0;
-        let duration = 30; // 示例时长（秒）
-        let interval;
+        if (!audioSrc) return;
         
-        // 播放/暂停按钮
-        if (playBtn) {
-            playBtn.addEventListener('click', function() {
-                if (isPlaying) {
-                    pauseAudio();
+        playBtn.addEventListener('click', function() {
+            // 停止当前播放的音频
+            if (currentAudio && !currentAudio.paused) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                if (currentBtn) {
+                    currentBtn.textContent = '▶';
+                    currentBtn.style.background = '#667eea';
+                }
+                const currentProgress = currentBtn.parentElement.querySelector('.progress-mini');
+                if (currentProgress) currentProgress.style.setProperty('--progress', '0%');
+                currentAudio = null;
+                currentBtn = null;
+            }
+            
+            // 如果点击的是当前播放的按钮，则暂停/恢复播放
+            if (currentBtn === playBtn && currentAudio) {
+                if (currentAudio.paused) {
+                    // 恢复播放
+                    currentAudio.play().then(() => {
+                        playBtn.textContent = '⏸';
+                        playBtn.style.background = '#dc3545';
+                    }).catch(error => {
+                        console.error('音频播放失败:', error);
+                    });
                 } else {
-                    playAudio();
+                    // 暂停播放
+                    currentAudio.pause();
+                    playBtn.textContent = '▶';
+                    playBtn.style.background = '#667eea';
+                }
+                return;
+            }
+            
+            // 创建新的音频对象
+            currentAudio = new Audio(audioSrc);
+            currentBtn = playBtn;
+            
+            // 播放音频
+            currentAudio.play().then(() => {
+                playBtn.textContent = '⏸';
+                playBtn.style.background = '#dc3545';
+            }).catch(error => {
+                console.error('音频播放失败:', error);
+                alert('音频文件加载失败，请检查文件路径');
+            });
+            
+            // 更新进度条
+            currentAudio.addEventListener('timeupdate', function() {
+                if (progressBar && currentAudio.duration) {
+                    const progressPercent = (currentAudio.currentTime / currentAudio.duration) * 100;
+                    progressBar.style.setProperty('--progress', progressPercent + '%');
                 }
             });
-        }
-        
-        function playAudio() {
-            isPlaying = true;
-            playBtn.textContent = '⏸';
-            playBtn.style.background = '#dc3545';
             
-            interval = setInterval(() => {
-                currentTime += 1;
-                updateProgress();
-                
-                if (currentTime >= duration) {
-                    pauseAudio();
-                    currentTime = 0;
-                    updateProgress();
-                }
-            }, 1000);
-        }
-        
-        function pauseAudio() {
-            isPlaying = false;
-            playBtn.textContent = '▶';
-            playBtn.style.background = '#667eea';
-            clearInterval(interval);
-        }
-        
-        function updateProgress() {
-            const progressPercent = (currentTime / duration) * 100;
-            if (progressBar) {
-                progressBar.style.width = progressPercent + '%';
-            }
-        }
-        
-        // 初始化显示
-        updateProgress();
+            // 音频结束时重置
+            currentAudio.addEventListener('ended', function() {
+                playBtn.textContent = '▶';
+                playBtn.style.background = '#667eea';
+                if (progressBar) progressBar.style.setProperty('--progress', '0%');
+                currentAudio = null;
+                currentBtn = null;
+            });
+            
+            // 音频加载失败时处理
+            currentAudio.addEventListener('error', function() {
+                playBtn.textContent = '▶';
+                playBtn.style.background = '#667eea';
+                if (progressBar) progressBar.style.setProperty('--progress', '0%');
+                console.error('音频加载失败:', audioSrc);
+                currentAudio = null;
+                currentBtn = null;
+            });
+        });
     });
 }
 

@@ -5,6 +5,13 @@
     box-sizing: border-box;
 }
 
+/* 隐藏ChatGPT生成的音乐部分，只显示MusicCaps部分 */
+.chatgpt-section {
+    display: none !important;
+}
+
+
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
@@ -288,10 +295,7 @@ body {
 
 /* Audio Rows */
 .audio-rows {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: contents;
 }
 
 .audio-row {
@@ -397,14 +401,29 @@ body {
 
 .progress-mini {
     flex: 1;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
     transition: width 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-mini::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--progress, 0%);
+    background: linear-gradient(90deg, #ffd700, #ffed4e);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
 }
 
 /* Responsive Design for Audio Table */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .audio-table-header,
     .audio-row {
         grid-template-columns: 1fr;
@@ -439,7 +458,7 @@ body {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .audio-section {
         padding: 60px 0;
     }
